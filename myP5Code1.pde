@@ -1,6 +1,8 @@
 setup = function() {
-    size(600, 400);
+    size(800, 450);
 };
+
+//-----------------------------------------------------
 
 //Background Images
 var caveSceneImage = loadImage("https://www.shutterstock.com/image-vector/vector-illustration-background-forest-scenery-600nw-1807427365.jpg");
@@ -30,15 +32,17 @@ draw = function(){
 };
 
 var drawScene = function(){
-    image(sceneImage, 0, 0, 600, 400);
+    image(sceneImage, 0, 0, 800, 450);
     
+
+    //bottom text box thingy -------------------------
     fill(0,0,0);
-    rect(0, 350, 600, 100);
-      
+    rect(0, 350, 800, 100); 
+    
     fill(255,255,255);
     textSize(20);
    
-    text(sceneText, 10, 375);
+    text(sceneText, 10, 400);
 };
 
 
