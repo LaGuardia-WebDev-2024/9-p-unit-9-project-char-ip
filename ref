@@ -5,15 +5,12 @@ setup = function() {
 //-----------------------------------------------------
 
 //Background Images
-var mainSceneImage = loadImage(" ");
-var LWindowSceneImage = loadImage(" ");
-var doorSceneImage = loadImage(" ");
-var RWindowSceneImage = loadImage(" ");
-var ChestSceneImage = loadImage(" ");
-var WardrobeSceneImage = loadImage(" ");
+var caveSceneImage = loadImage("https://www.shutterstock.com/image-vector/vector-illustration-background-forest-scenery-600nw-1807427365.jpg");
+
+var forestImage = loadImage("https://t3.ftcdn.net/jpg/02/50/39/72/360_F_250397206_HuBj2V5oEytcqonzpzum4IjEjtAsZq3g.jpg");
 
 //Variable Declarations
-var sceneImage = mainSceneImage;
+var sceneImage = caveSceneImage;
 var sceneText = "Where do you want to go?  [Press f for forest and c for cave]";
 
 draw = function(){
@@ -39,6 +36,8 @@ var drawScene = function(){
     
 
     //bottom text box thingy -------------------------
+    fill(0,0,0);
+    rect(0, 350, 800, 100); 
     
     fill(255,255,255);
     textSize(20);
@@ -48,3 +47,6 @@ var drawScene = function(){
 
 
 
+lwindow: 153, 149, 183
+door: 149, 143, 185
+rwindow: 156, 150, 190
