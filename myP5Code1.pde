@@ -69,18 +69,47 @@ draw = function(){
     
    drawScene();
 
+  // LW mask ------------------------------------------------
 
-   if(keyPressed){
-     if(key == 'f'){
-       sceneImage = forestImage;   
-       sceneText = "No fox here.  [Press s to restart]";
-     } 
-     if(key == 's'){
-      sceneImage = caveSceneImage;
-      sceneText = "Where do you want to go?  [Press f for forest and c for cave]";
-    } 
-   }
+    if (dist(mouseX, mouseY, 105, 180)< 40 && sceneImage == mainSceneImage){
+      sceneImage = LWHover;  
+    }
+
+  // ----- the only else statement dont move this -------------
+  else {
+    sceneImage = mainSceneImage;
+  }
+  // ----- the only else statement dont move this -------------
+    
+    if (dist(mouseX, mouseY, 105, 200)< 40 && sceneImage == mainSceneImage){
+      sceneImage = LWHover;  
+    }
+
+
+  // door mask ------------------------------------------------
+    
+    if (dist(mouseX, mouseY, 245, 170)< 70 && sceneImage == mainSceneImage){
+      sceneImage = DoorHover;  
+    }
   
+  
+
+    if (dist(mouseX, mouseY, 245, 220)< 70 && sceneImage == mainSceneImage){
+      sceneImage = DoorHover;  
+    }
+  
+    if (dist(mouseX, mouseY, 245, 260)< 70 && sceneImage == mainSceneImage){
+      sceneImage = DoorHover;  
+    }
+    
+
+  // RW mask ------------------------------------------------
+    if (dist(mouseX, mouseY, 385, 180)< 40 && sceneImage == mainSceneImage){
+      sceneImage = RWHover;  
+    }
+    if (dist(mouseX, mouseY, 385, 200)< 40 && sceneImage == mainSceneImage){
+      sceneImage = RWHover;  
+    }
 };
 
 
