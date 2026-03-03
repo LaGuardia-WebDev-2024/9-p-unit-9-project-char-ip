@@ -50,3 +50,8 @@ var drawScene = function(){
 lwindow: 153, 149, 183
 door: 149, 143, 185
 rwindow: 156, 150, 190
+
+
+
+onmouseenter
+onmouseout

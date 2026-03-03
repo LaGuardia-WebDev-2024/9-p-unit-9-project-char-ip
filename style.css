@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Delius&family=Poetsen+One&display=swap');
 
 body {
-  background-image: url("https://cdn.mos.cms.futurecdn.net/HuGGeENt6kGyixe3hT9tnY.jpg");
+  background-image: url("forest.png");
+  background-size:2100px;
   text-align: center;
   margin: auto;
-   font-family: "Poetsen One", serif;
+   font-family: "Silkscreen", sans-serif;
 }
 
 h1{
@@ -14,11 +15,22 @@ h1{
 
 #myCanvas {
   background-size: 600px 400px;
-  border-radius: 30px;
-  border: 5px solid white;
+  border-radius: 10px;
+  border: 5px solid rgb(0, 0, 0);
 }
 
 
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
 
 
 
