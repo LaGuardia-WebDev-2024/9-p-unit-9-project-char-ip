@@ -16,31 +16,31 @@ var mainSceneImage = loadImage("images/main/main.png");
   var WardrobeHover = loadImage("images/main/WardrobeHover.png"); 
 
 //left window -----------------------------------------
-var LWindowImage = loadImage(" "); 
-  var LWKeyHover = loadImage(" ");
-  var LWempty = loadImage(" ");
+var LWindowImage = loadImage("images/LWindow.png"); 
+  var LWKeyHover = loadImage("images/LWKeyHover.png");
+  var LWempty = loadImage("images/LWempty.png");
 
 //door ------------------------------------------------
-var doorImage = loadImage(" "); 
-  var exit = loadImage(" "); 
+var doorImage = loadImage("images/"); 
+  var exit = loadImage("images/"); 
 
 //right window ----------------------------------------
-var RWindowImage = loadImage(" "); 
-  var RWRockHover = loadImage(" ");
-  var RWempty = loadImage(" ");
+var RWindowImage = loadImage("images/Rwindow.png"); 
+  var RWRockHover = loadImage("images/RWRockHover.png");
+  var RWempty = loadImage("images/RWempty.png");
 
 //chest -----------------------------------------------
-var ChestImage = loadImage(" "); 
-  var COpen = loadImage(" "); 
-  var CShearHover = loadImage(" "); 
-  var Cempty = loadImage(" "); 
+var ChestImage = loadImage("images/"); 
+  var COpen = loadImage("images/"); 
+  var CShearHover = loadImage("images/"); 
+  var Cempty = loadImage("images/"); 
 
 //wardrobe --------------------------------------------
-var WardrobeImage = loadImage(" "); 
-  var WStaffHover = loadImage(" "); 
-  var WFabric = loadImage(" "); 
-  var WFabricHover = loadImage(" "); 
-  var Wempty = loadImage(" "); 
+var WardrobeImage = loadImage("images/"); 
+  var WStaffHover = loadImage("images/"); 
+  var WFabric = loadImage("images/"); 
+  var WFabricHover = loadImage("images/"); 
+  var Wempty = loadImage("images/"); 
 
 //--------------------------------------------------------------------
 
@@ -69,6 +69,8 @@ draw = function(){
     
    drawScene();
 
+  //MAIN
+
   // LW mask ------------------------------------------------
 
     if (dist(mouseX, mouseY, 105, 180)< 40 && sceneImage == mainSceneImage){
@@ -91,8 +93,6 @@ draw = function(){
     if (dist(mouseX, mouseY, 245, 170)< 70 && sceneImage == mainSceneImage){
       sceneImage = DoorHover;  
     }
-  
-  
 
     if (dist(mouseX, mouseY, 245, 220)< 70 && sceneImage == mainSceneImage){
       sceneImage = DoorHover;  
@@ -101,7 +101,6 @@ draw = function(){
     if (dist(mouseX, mouseY, 245, 260)< 70 && sceneImage == mainSceneImage){
       sceneImage = DoorHover;  
     }
-    
 
   // RW mask ------------------------------------------------
     if (dist(mouseX, mouseY, 385, 180)< 40 && sceneImage == mainSceneImage){
@@ -110,10 +109,48 @@ draw = function(){
     if (dist(mouseX, mouseY, 385, 200)< 40 && sceneImage == mainSceneImage){
       sceneImage = RWHover;  
     }
+
+  // chest mask ------------------------------------------------
+    if (dist(mouseX, mouseY, 380, 300)< 40 && sceneImage == mainSceneImage){
+      sceneImage = ChestHover;  
+    }
+
+  // wardrobe mask ------------------------------------------------
+    
+    if (dist(mouseX, mouseY, 650, 230)< 110 && sceneImage == mainSceneImage){
+      sceneImage = WardrobeHover;  
+    }
+
+    if (dist(mouseX, mouseY, 650, 280)< 110 && sceneImage == mainSceneImage){
+      sceneImage = WardrobeHover;  
+    }
+  
+    if (dist(mouseX, mouseY, 650, 300)< 110 && sceneImage == mainSceneImage){
+      sceneImage = WardrobeHover;  
+    }
+
+//=================================================================
+  // LEFT WINDOW
+
+
+
+};
+
+//=================================================================
+//=================================================================
+//=================================================================
+
+function mouseClicked(){
+  if(sceneImage == LWHover){
+  sceneImage = LWindowImage;
+  }
 };
 
 
-//--------------------------------------------------------------------
+
+
+
+//==================================================================
 
 var drawScene = function(){
     image(sceneImage, 0, 0, 800, 450);
