@@ -171,6 +171,7 @@ draw = function(){
     if (dist(mouseX, mouseY, 400, 225)< 130){
       sceneText = "These bars are rusted. A good bash from a stone could break it open.";
     }
+    
     else {
       sceneImage = doorImage;
     }
@@ -179,10 +180,14 @@ draw = function(){
   //=================================================================
 
   if (inRWView){
-    if (dist(mouseX, mouseY, 460, 350)< 20){
+    if (hasRock == true){
+      sceneImage = RWempty;
+    }
+    else if (dist(mouseX, mouseY, 460, 350)< 20){
       sceneImage = RWRockHover;
       sceneText = "That rock looks durable.";
     }
+    
     else {
       sceneImage = RWindowImage;
     }
@@ -202,8 +207,19 @@ draw = function(){
   //=================================================================
 
 
-
   //=================================================================
+
+  if (inWardrobeView) {
+    if (dist(mouseX, mouseY, 400, 225)< 130){
+      sceneText = "These doors can be easily opened.";
+    }
+    else {
+      sceneImage = WardrobeImage;
+    }
+  }
+
+  //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
   // Mouse Click Handlers  
   if(mousePressed){
     // Left Window -------------------------------------------
@@ -220,16 +236,29 @@ draw = function(){
       inDoorView = true;
       sceneImage = doorImage;
     }
+
+    // Right window -------------------------------------------
+
     else if(sceneImage == RWHover){
       clearViews();
       inRWView = true;
       sceneImage = RWindowImage;
     }
+    else if (sceneImage == RWRockHover){
+      hasRock = true;
+      sceneImage = RWempty;
+    }
+
+    // chest -------------------------------------------
+
     else if(sceneImage == ChestHover){
       clearViews();
       inChestView = true;
       sceneImage = ChestImage;
     }
+
+    // wardrobe -------------------------------------------
+
     else if(sceneImage == WardrobeHover){
       clearViews();
       inWardrobeView = true;
@@ -246,24 +275,25 @@ var drawScene = function(){
   image(sceneImage, 0, 0, 800, 450);
   
   // Show Items -----------------------------------------------------------
-  if (Key == true){
+  if (hasKey == true){
     // draw the key in the item slot
-    image(keyVariableName, 0, 0, 800, 450);
+    image(Key, 0, 0, 390, 450);
+    sceneImage = RWempty;
   }
 
-  if (Rock == true){
+  if (hasRock == true){
     // draw the rock in the item slot
-    image(keyVariableName, 0, 0, 800, 450);
+    image(Rock, 0, 200, 100, 130);
   }
 
-  if (Shear == true){
+  if (hasShear == true){
     // draw the shear in the item slot
-    image(keyVariableName, 0, 0, 800, 450);
+    image(Shear, 0, 0, 800, 450);
   }
 
-  if (Staff == true){
+  if (hasStaff == true){
     // draw the staff in the item slot
-    image(keyVariableName, 0, 0, 800, 450);
+    image(Staff, 0, 0, 800, 450);
   }
 
 
