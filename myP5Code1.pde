@@ -7,6 +7,8 @@ setup = function() {
 
 //BACKGROUND IMAGES
 
+var numDays = random()*100
+
 //main ------------------------------------------------
 var mainSceneImage = loadImage("images/main/main.png"); 
 var LWHover = loadImage("images/main/LWHover.png"); 
@@ -74,6 +76,7 @@ var inDoorView = false;
 var inRWView = false;
 var inChestView = false;
 var inWardrobeView = false;
+var inWardrobeFabricView = false;
 
 
 //===================================================================
@@ -81,7 +84,7 @@ var inWardrobeView = false;
 draw = function(){
     
   drawScene();
-  
+  text ("# of Days:" + floor(numDays), 665, 430);
   if(dist(mouseX, mouseY, 400, 410)< 20 ){
     clearViews();
       inInitalView = true; 
@@ -210,11 +213,44 @@ draw = function(){
   //=================================================================
 
   if (inWardrobeView) {
-    if (dist(mouseX, mouseY, 400, 225)< 130){
+    if (hasStaff == true){
+      sceneImage = WFabric;
+    }
+    else if (dist(mouseX, mouseY, 400, 225)< 130){
       sceneText = "These doors can be easily opened.";
     }
+    else if (sceneImage == WOpen){
+      sceneText = "A fairly untouched staff. It's quite long as well."
+    }
+
+    else if (dist(mouseX, mouseY, 635, 130)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 634, 161)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 612, 216)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 600, 238)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 580, 260)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+
+
     else {
-      sceneImage = WardrobeImage;
+      sceneImage = Wempty;
+    }
+  }
+
+  if (inWardrobeFabricView) {
+    if (hasShear == true){
+      sceneImage = Wempty;
+    }
+    else {
+      sceneImage = WFabric;
     }
   }
 
@@ -262,7 +298,7 @@ draw = function(){
     else if(sceneImage == WardrobeHover){
       clearViews();
       inWardrobeView = true;
-      sceneImage = WardrobeImage;
+      sceneImage = WOpen;
     }
 
   }
@@ -312,6 +348,7 @@ function clearViews(){
   inRWView = false;
   inChestView = false;
   inWardrobeView = false;
+  inWardrobeFabricView = false;
 }
 
 
