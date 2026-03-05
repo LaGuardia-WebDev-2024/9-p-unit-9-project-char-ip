@@ -25,7 +25,7 @@ var doorImage = loadImage("images/doorImage.png");
 var exit = loadImage("images/exit.png"); 
 
 //right window ----------------------------------------
-var RWindowImage = loadImage("images/Rwindow.png"); 
+var RWindowImage = loadImage("images/RWindow.png"); 
 var RWRockHover = loadImage("images/RWRockHover.png");
 var RWempty = loadImage("images/RWempty.png");
 
@@ -76,15 +76,22 @@ var inChestView = false;
 var inWardrobeView = false;
 
 
-//--------------------------------------------------------------------
-//--------------------------------------------------------------------
-
+//===================================================================
 
 draw = function(){
     
   drawScene();
-
   
+  if(dist(mouseX, mouseY, 400, 410)< 20 ){
+    clearViews();
+      inInitalView = true; 
+      console.log ("GOING BACK!");
+  }
+  if(keyPressed){
+    if(key == 'b'){
+      inInitalView = true;
+    } 
+  }
 
   //MAIN
 
@@ -141,19 +148,92 @@ draw = function(){
     }
   }
 
+  //=================================================================
+
+  if (inLWView){
+    if (dist(mouseX, mouseY, 430, 150)< 20 ){
+      sceneImage = LWKeyHover;  
+      sceneText = "A key! But it's just out of reach...";
+    }
+
+    else if (dist(mouseX, mouseY, 430, 150)< 20 && staff == true){
+      sceneImage = LWempty;
+      sceneText = "Got it!";
+    }
+
+    else {
+      sceneImage = LWindowImage;
+    }
+  }
+  //=================================================================
+
+  if (inDoorView){
+    if (dist(mouseX, mouseY, 400, 225)< 130){
+      sceneText = "These bars are rusted. A good bash from a stone could break it open.";
+    }
+    else {
+      sceneImage = doorImage;
+    }
+  }
 
   //=================================================================
-  // Mouse Click Handlers
+
+  if (inRWView){
+    if (dist(mouseX, mouseY, 460, 350)< 20){
+      sceneImage = RWRockHover;
+      sceneText = "That rock looks durable.";
+    }
+    else {
+      sceneImage = RWindowImage;
+    }
+  }
+
+  //=================================================================
+
+  if (inChestView) {
+    if (dist(mouseX, mouseY, 330, 210)< 10){
+      sceneText = "A key is needed.";
+    }
+    else {
+      sceneImage = ChestImage;
+    }
+  }
+
+  //=================================================================
+
+
+
+  //=================================================================
+  // Mouse Click Handlers  
   if(mousePressed){
+    // Left Window -------------------------------------------
     if (sceneImage == LWHover){
       clearViews();
       inLWView = true;
       sceneImage = LWindowImage;
     }
+
+    // Door -------------------------------------------
+
     else if(sceneImage == DoorHover){
       clearViews();
       inDoorView = true;
       sceneImage = doorImage;
+    }
+    else if(sceneImage == RWHover){
+      clearViews();
+      inRWView = true;
+      sceneImage = RWindowImage;
+    }
+    else if(sceneImage == ChestHover){
+      clearViews();
+      inChestView = true;
+      sceneImage = ChestImage;
+    }
+    else if(sceneImage == WardrobeHover){
+      clearViews();
+      inWardrobeView = true;
+      sceneImage = WardrobeImage;
     }
 
   }

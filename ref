@@ -55,3 +55,14 @@ rwindow: 156, 150, 190
 
 onmouseenter
 onmouseout
+
+
+
+
+
+
+if(keyPressed){
+    if(key == 'b'){
+      inInitalView = true;
+    } 
+  }
