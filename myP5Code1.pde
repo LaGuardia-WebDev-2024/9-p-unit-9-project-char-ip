@@ -24,6 +24,8 @@ var LWempty = loadImage("images/LWempty.png");
 
 //door ------------------------------------------------
 var doorImage = loadImage("images/doorImage.png"); 
+var ExitHover = loadImage("images/exitHover.png");
+var exitArrow = loadImage("images/exitwitharrow.png");
 var exit = loadImage("images/exit.png"); 
 
 //right window ----------------------------------------
@@ -59,6 +61,12 @@ var hasRock = false
 var hasShear = false
 var hasStaff = false
 var hasFabric = false
+
+var usedKey = false
+var usedRock = false
+var usedShear = false
+var usedStaff = false
+var usedFabric = false
 
 //--------------------------------------------------------------------
 
@@ -171,10 +179,18 @@ draw = function(){
   //=================================================================
 
   if (inDoorView){
-    if (dist(mouseX, mouseY, 400, 225)< 130){
+    if (dist(mouseX, mouseY, 400, 225)< 130 && hasRock == true){
+      sceneImage = ExitHover;
+      sceneText = "One good hit andd...!";
+    }
+    else if (usedRock == true){
+      sceneImage = exitArrow;
+    }
+
+    else if (dist(mouseX, mouseY, 400, 225)< 130){
       sceneText = "These bars are rusted. A good bash from a stone could break it open.";
     }
-    
+
     else {
       sceneImage = doorImage;
     }
@@ -186,11 +202,18 @@ draw = function(){
     if (hasRock == true){
       sceneImage = RWempty;
     }
+
+    else if (usedRock == true){
+      sceneImage = RWempty;
+    }
+    else if (dist(mouseX, mouseY, 460, 350)< 20 && usedRock == true){
+      sceneImage = RWempty;
+    }
+
     else if (dist(mouseX, mouseY, 460, 350)< 20){
       sceneImage = RWRockHover;
       sceneText = "That rock looks durable.";
     }
-    
     else {
       sceneImage = RWindowImage;
     }
@@ -199,7 +222,10 @@ draw = function(){
   //=================================================================
 
   if (inChestView) {
-    if (dist(mouseX, mouseY, 330, 210)< 10){
+    if (hasKey == true){
+      sceneImage = COpen
+    }
+    else if (dist(mouseX, mouseY, 330, 210)< 60){
       sceneText = "A key is needed.";
     }
     else {
@@ -216,26 +242,22 @@ draw = function(){
     if (hasStaff == true){
       sceneImage = WFabric;
     }
-    else if (dist(mouseX, mouseY, 400, 225)< 130){
-      sceneText = "These doors can be easily opened.";
-    }
     else if (sceneImage == WOpen){
-      sceneText = "A fairly untouched staff. It's quite long as well."
+      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
-
-    else if (dist(mouseX, mouseY, 635, 130)< 25 && sceneImage == WOpen){
+    else if (dist(mouseX, mouseY, 635, 130)< 45 && sceneImage == WOpen){
       sceneImage = WStaffHover;
     }
-    else if (dist(mouseX, mouseY, 634, 161)< 25 && sceneImage == WOpen){
+    else if (dist(mouseX, mouseY, 634, 161)< 45 && sceneImage == WOpen){
       sceneImage = WStaffHover;
     }
-    else if (dist(mouseX, mouseY, 612, 216)< 25 && sceneImage == WOpen){
+    else if (dist(mouseX, mouseY, 612, 216)< 45 && sceneImage == WOpen){
       sceneImage = WStaffHover;
     }
-    else if (dist(mouseX, mouseY, 600, 238)< 25 && sceneImage == WOpen){
+    else if (dist(mouseX, mouseY, 600, 238)< 45 && sceneImage == WOpen){
       sceneImage = WStaffHover;
     }
-    else if (dist(mouseX, mouseY, 580, 260)< 25 && sceneImage == WOpen){
+    else if (dist(mouseX, mouseY, 580, 260)< 45 && sceneImage == WOpen){
       sceneImage = WStaffHover;
     }
 
@@ -271,6 +293,14 @@ draw = function(){
       clearViews();
       inDoorView = true;
       sceneImage = doorImage;
+    }
+
+    else if(sceneImage == ExitHover){
+      clearViews();
+      sceneImage = exitArrow;
+      sceneText = "Nice! Now, got to find something to descend this tower.";
+      hasRock = false;
+      usedRock = true;
     }
 
     // Right window -------------------------------------------
@@ -331,7 +361,6 @@ var drawScene = function(){
     // draw the staff in the item slot
     image(Staff, 0, 0, 800, 450);
   }
-
 
   //text box -------------------------
   
