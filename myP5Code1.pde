@@ -84,7 +84,6 @@ var inDoorView = false;
 var inRWView = false;
 var inChestView = false;
 var inWardrobeView = false;
-var inWardrobeFabricView = false;
 
 
 //===================================================================
@@ -114,9 +113,10 @@ draw = function(){
     if (dist(mouseX, mouseY, 105, 180)< 40 ){
       sceneImage = LWHover;  
     }
-    if (dist(mouseX, mouseY, 105, 220)< 40 ){
+    else if (dist(mouseX, mouseY, 105, 220)< 40 ){
       sceneImage = LWHover;  
     }
+    
      
     // door mask ------------------------------------------------
     else if (dist(mouseX, mouseY, 245, 170)< 70){
@@ -162,14 +162,12 @@ draw = function(){
   //=================================================================
 
   if (inLWView){
-    if (dist(mouseX, mouseY, 430, 150)< 20 ){
+    if (hasKey == true){
+      sceneImage = LWempty;
+    }
+    else if (dist(mouseX, mouseY, 430, 150)< 20 ){
       sceneImage = LWKeyHover;  
       sceneText = "A key! But it's just out of reach...";
-    }
-
-    else if (dist(mouseX, mouseY, 430, 150)< 20 && staff == true){
-      sceneImage = LWempty;
-      sceneText = "Got it!";
     }
 
     else {
@@ -223,9 +221,23 @@ draw = function(){
 
   if (inChestView) {
     if (hasKey == true){
-      sceneImage = COpen
+      sceneText = "You found shears!";
     }
-    else if (dist(mouseX, mouseY, 330, 210)< 60){
+  else if (hasShear == true){
+    sceneImage = Cempty;
+  }
+
+    else if (dist(mouseX, mouseY, 400, 165)< 40){
+          sceneText = "Looks sharp, this could cut fabric well.";
+          sceneImage = CShearHover;
+        }
+
+    else if (usedKey == true){
+      sceneImage = COpen;
+    }
+
+    
+    else if (dist(mouseX, mouseY, 330, 210)< 20){
       sceneText = "A key is needed.";
     }
     else {
@@ -242,39 +254,60 @@ draw = function(){
     if (hasStaff == true){
       sceneImage = WFabric;
     }
+    if (usedStaff == true){
+      sceneImage = WFabric;
+    }
+    else if (dist(mouseX, mouseY, 270, 111)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 233, 88)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 199, 78)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 170, 105)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 163, 152)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 168, 190)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 195, 230)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 210, 250)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 240, 280)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 260, 300)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 280, 350)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+    else if (dist(mouseX, mouseY, 290, 390)< 25 && sceneImage == WOpen){
+      sceneImage = WStaffHover;
+    }
+
     else if (sceneImage == WOpen){
-      sceneText = "A fairly untouched staff. It's quite long as well.";
-    }
-    else if (dist(mouseX, mouseY, 635, 130)< 45 && sceneImage == WOpen){
-      sceneImage = WStaffHover;
-    }
-    else if (dist(mouseX, mouseY, 634, 161)< 45 && sceneImage == WOpen){
-      sceneImage = WStaffHover;
-    }
-    else if (dist(mouseX, mouseY, 612, 216)< 45 && sceneImage == WOpen){
-      sceneImage = WStaffHover;
-    }
-    else if (dist(mouseX, mouseY, 600, 238)< 45 && sceneImage == WOpen){
-      sceneImage = WStaffHover;
-    }
-    else if (dist(mouseX, mouseY, 580, 260)< 45 && sceneImage == WOpen){
-      sceneImage = WStaffHover;
+      sceneText = "That staff is fairly untouched and rather long.";
     }
 
-
-    else {
-      sceneImage = Wempty;
+    else if (sceneImage == WStaffHover){
+      sceneText = "Hope I don't get a splinter.";
     }
-  }
 
-  if (inWardrobeFabricView) {
-    if (hasShear == true){
-      sceneImage = Wempty;
-    }
     else {
       sceneImage = WFabric;
     }
   }
+
+  
 
   //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -285,6 +318,13 @@ draw = function(){
       clearViews();
       inLWView = true;
       sceneImage = LWindowImage;
+    }
+    else if (hasStaff == true && sceneImage == LWKeyHover){
+      sceneImage = LWindowImage;
+      hasStaff = false;
+      hasKey = true;
+      sceneText = "Got it!"
+      usedStaff = true;
     }
 
     // Door -------------------------------------------
@@ -323,12 +363,28 @@ draw = function(){
       sceneImage = ChestImage;
     }
 
+    else if (sceneImage == CShearHover){
+          hasShear = true;
+          sceneImage = Cempty;
+        }
+    else if (sceneImage == ChestImage && hasKey == true){
+      hasKey = false;
+      usedKey = true;
+      sceneImage = COpen;
+    }
+    
+
     // wardrobe -------------------------------------------
 
     else if(sceneImage == WardrobeHover){
       clearViews();
       inWardrobeView = true;
       sceneImage = WOpen;
+    }
+
+    else if (sceneImage == WStaffHover){
+      hasStaff = true;
+      sceneImage = WFabric;
     }
 
   }
@@ -343,8 +399,7 @@ var drawScene = function(){
   // Show Items -----------------------------------------------------------
   if (hasKey == true){
     // draw the key in the item slot
-    image(Key, 0, 0, 390, 450);
-    sceneImage = RWempty;
+    image(Key, 0, 30, 100, 130);
   }
 
   if (hasRock == true){
@@ -354,12 +409,12 @@ var drawScene = function(){
 
   if (hasShear == true){
     // draw the shear in the item slot
-    image(Shear, 0, 0, 800, 450);
+    image(Shear, 0, 70, 100, 130);
   }
 
   if (hasStaff == true){
     // draw the staff in the item slot
-    image(Staff, 0, 0, 800, 450);
+    image(Staff, 0, 330, 100, 130);
   }
 
   //text box -------------------------
@@ -377,7 +432,6 @@ function clearViews(){
   inRWView = false;
   inChestView = false;
   inWardrobeView = false;
-  inWardrobeFabricView = false;
 }
 
 

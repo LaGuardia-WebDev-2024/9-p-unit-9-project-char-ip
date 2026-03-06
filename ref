@@ -72,54 +72,51 @@ if(keyPressed){
 
   else if (dist(mouseX, mouseY, 400, 200)< 30){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
   // staff mask (uh oh)
     else if (dist(mouseX, mouseY, 530, 111)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 551, 88)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 577, 64)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 605, 75)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 628, 99)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 635, 130)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 634, 161)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 612, 216)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 600, 238)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 580, 260)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 555, 290)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
     else if (dist(mouseX, mouseY, 533, 325)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
-      sceneText = "A fairly untouched staff. It's quite long as well.";
     }
+
+
+    if (inWardrobeFabricView) {
+    if (hasShear == true){
+      sceneImage = Wempty;
+    }
+    else {
+      sceneImage = WFabric;
+    }
+  }
