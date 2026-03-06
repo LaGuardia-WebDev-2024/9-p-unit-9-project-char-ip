@@ -165,6 +165,9 @@ draw = function(){
     if (hasKey == true){
       sceneImage = LWempty;
     }
+    else if (usedKey == true){
+      sceneImage =LWempty;
+    }
     else if (dist(mouseX, mouseY, 430, 150)< 20 ){
       sceneImage = LWKeyHover;  
       sceneText = "A key! But it's just out of reach...";
@@ -228,7 +231,7 @@ draw = function(){
   }
 
     else if (dist(mouseX, mouseY, 400, 165)< 40){
-          sceneText = "Looks sharp, this could cut fabric well.";
+          sceneText = "Looks sharp, I could use this to cut some material for some makeshift rope.";
           sceneImage = CShearHover;
         }
 
@@ -253,6 +256,7 @@ draw = function(){
   if (inWardrobeView) {
     if (hasStaff == true){
       sceneImage = WFabric;
+      sceneText = "hm, the fabric lining of this wardrobe isn't that bad."
     }
     if (usedStaff == true){
       sceneImage = WFabric;
