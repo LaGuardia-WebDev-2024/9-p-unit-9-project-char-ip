@@ -184,6 +184,7 @@ draw = function(){
       sceneImage = ExitHover;
       sceneText = "One good hit andd...!";
     }
+
     else if (usedRock == true){
       sceneImage = exitArrow;
     }
@@ -191,7 +192,7 @@ draw = function(){
     else if (dist(mouseX, mouseY, 400, 225)< 130){
       sceneText = "These bars are rusted. A good bash from a stone could break it open.";
     }
-
+    
     else {
       sceneImage = doorImage;
     }
@@ -250,16 +251,23 @@ draw = function(){
 
   //=================================================================
 
-
-  //=================================================================
-
   if (inWardrobeView) {
     if (hasStaff == true){
       sceneImage = WFabric;
       sceneText = "hm, the fabric lining of this wardrobe isn't that bad."
     }
-    if (usedStaff == true){
+
+
+    else if (usedStaff == true && usedShear == false){
       sceneImage = WFabric;
+    }
+    else if (usedStaff == true && usedShear == true){
+      sceneImage = Wempty;
+      sceneText = "I can tie this into rope."
+      hasFabric = true;
+    }
+    else if (hasShear == true){
+      sceneText = "This lining will do.";
     }
     else if (dist(mouseX, mouseY, 270, 111)< 25 && sceneImage == WOpen){
       sceneImage = WStaffHover;
@@ -313,8 +321,7 @@ draw = function(){
 
   
 
-  //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
+  //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
   // Mouse Click Handlers  
   if(mousePressed){
     // Left Window -------------------------------------------
@@ -390,6 +397,12 @@ draw = function(){
       hasStaff = true;
       sceneImage = WFabric;
     }
+    else if (dist (mouseX, mouseY, 200, 225) < 100 && hasShear == true){
+      hasShear = false;
+      usedShear = true;
+      hasFabric = true;
+      sceneImage = Wempty;
+      }
 
   }
 };
@@ -420,6 +433,11 @@ var drawScene = function(){
     // draw the staff in the item slot
     image(Staff, 0, 330, 100, 130);
   }
+
+  if (hasFabric == true){
+    image(Fabric, 0, 270, 100, 130);
+  }
+
 
   //text box -------------------------
   
