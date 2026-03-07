@@ -9,6 +9,13 @@ setup = function() {
 
 var numDays = random()*100
 
+var ending1 = false
+var e1t
+var e1route = false
+var ending2 = false
+var e12
+var e2route = false
+
 //main ------------------------------------------------
 var mainSceneImage = loadImage("images/main/main.png"); 
 var LWHover = loadImage("images/main/LWHover.png"); 
@@ -26,6 +33,7 @@ var LWempty = loadImage("images/LWempty.png");
 var doorImage = loadImage("images/doorImage.png"); 
 var ExitHover = loadImage("images/exitHover.png");
 var exitArrow = loadImage("images/exitwitharrow.png");
+var doorFabricHover = loadImage("images/doorfabricoutline.png");
 var exit = loadImage("images/exit.png"); 
 
 //right window ----------------------------------------
@@ -92,16 +100,14 @@ draw = function(){
     
   drawScene();
   text ("# of Days:" + floor(numDays), 665, 430);
+  text ( e1t + " True Ending |" + e2t + " Quick Fix Ending", 10, 430);
+
   if(dist(mouseX, mouseY, 400, 410)< 20 ){
     clearViews();
       inInitalView = true; 
       console.log ("GOING BACK!");
   }
-  if(keyPressed){
-    if(key == 'b'){
-      inInitalView = true;
-    } 
-  }
+  
 
   //MAIN
 
@@ -185,10 +191,15 @@ draw = function(){
       sceneText = "One good hit andd...!";
     }
 
+    else if (hasFabric == true && usedRock == true){
+      e1route = true;
+      sceneImage = doorFabricHover;
+    }
+
     else if (usedRock == true){
       sceneImage = exitArrow;
     }
-
+    
     else if (dist(mouseX, mouseY, 400, 225)< 130){
       sceneText = "These bars are rusted. A good bash from a stone could break it open.";
     }
@@ -230,7 +241,9 @@ draw = function(){
   else if (hasShear == true){
     sceneImage = Cempty;
   }
-
+  else if (usedShear == true){
+    sceneImage = Cempty;
+  }
     else if (dist(mouseX, mouseY, 400, 165)< 40){
           sceneText = "Looks sharp, I could use this to cut some material for some makeshift rope.";
           sceneImage = CShearHover;
@@ -317,6 +330,11 @@ draw = function(){
     else {
       sceneImage = WFabric;
     }
+
+  if (e1route == true && inDoorView) {
+    sceneImage = doorFabricHover;
+  }
+
   }
 
   
@@ -397,6 +415,7 @@ draw = function(){
       hasStaff = true;
       sceneImage = WFabric;
     }
+
     else if (dist (mouseX, mouseY, 200, 225) < 100 && hasShear == true){
       hasShear = false;
       usedShear = true;
@@ -404,6 +423,7 @@ draw = function(){
       sceneImage = Wempty;
       }
 
+    
   }
 };
 
@@ -413,6 +433,12 @@ draw = function(){
 var drawScene = function(){
   image(sceneImage, 0, 0, 800, 450);
   
+  if (ending1 == false){
+    
+  }
+
+
+
   // Show Items -----------------------------------------------------------
   if (hasKey == true){
     // draw the key in the item slot
@@ -443,8 +469,20 @@ var drawScene = function(){
   
   fill(255,255,255);
   textSize(20);
-  
   text(sceneText, 10, 30);
+
+  if (ending1 == false){
+    e1t = "【 】";
+  }
+  if (ending1 == true){
+    e1t = "【✓】";
+  }
+  if (ending2 == false){
+    e2t = "【 】";
+  }
+  if (ending2 == true){
+    e2t = "【✓】";
+  }
 };
 
 function clearViews(){
@@ -454,6 +492,4 @@ function clearViews(){
   inRWView = false;
   inChestView = false;
   inWardrobeView = false;
-}
-
-
+};
