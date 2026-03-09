@@ -104,8 +104,8 @@ draw = function(){
 
   if(dist(mouseX, mouseY, 400, 410)< 20 ){
     clearViews();
-      inInitalView = true; 
-      console.log ("GOING BACK!");
+    inInitalView = true; 
+    console.log ("GOING BACK!");
   }
   
 
@@ -235,27 +235,21 @@ draw = function(){
   //=================================================================
 
   if (inChestView) {
-    if (hasKey == true){
-      sceneText = "You found shears!";
+    if (hasShear == true){
+      sceneImage = Cempty;
     }
-  else if (hasShear == true){
-    sceneImage = Cempty;
-  }
-  else if (usedShear == true){
-    sceneImage = Cempty;
-  }
-    else if (dist(mouseX, mouseY, 400, 165)< 40){
-          sceneText = "Looks sharp, I could use this to cut some material for some makeshift rope.";
-          sceneImage = CShearHover;
-        }
-
-    else if (usedKey == true){
+    else if (usedShear == true){
+      sceneImage = Cempty;
+    }
+    else if (usedKey == true && hasKey == false){
       sceneImage = COpen;
     }
-
-    
     else if (dist(mouseX, mouseY, 330, 210)< 20){
       sceneText = "A key is needed.";
+    }
+    else if (dist(mouseX, mouseY, 400, 165)< 40 && usedKey == true){
+      sceneText = "Looks sharp, I could use this to cut some material for some makeshift rope.";
+      sceneImage = CShearHover;
     }
     else {
       sceneImage = ChestImage;
@@ -326,15 +320,13 @@ draw = function(){
     else if (sceneImage == WStaffHover){
       sceneText = "Hope I don't get a splinter.";
     }
-
     else {
       sceneImage = WFabric;
     }
 
-  if (e1route == true && inDoorView) {
-    sceneImage = doorFabricHover;
-  }
-
+    if (e1route == true && inDoorView) {
+      sceneImage = doorFabricHover;
+    }
   }
 
   
@@ -391,11 +383,10 @@ draw = function(){
       inChestView = true;
       sceneImage = ChestImage;
     }
-
     else if (sceneImage == CShearHover){
-          hasShear = true;
-          sceneImage = Cempty;
-        }
+      hasShear = true;
+      sceneImage = Cempty;
+    }
     else if (sceneImage == ChestImage && hasKey == true){
       hasKey = false;
       usedKey = true;
@@ -421,7 +412,7 @@ draw = function(){
       usedShear = true;
       hasFabric = true;
       sceneImage = Wempty;
-      }
+    }
 
     
   }
