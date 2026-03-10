@@ -191,12 +191,14 @@ draw = function(){
       sceneText = "One good hit andd...!";
     }
 
-    else if (hasFabric == true && usedRock == true){
-      e1route = true;
+    else if (dist(mouseX, mouseY, 400, 30)< 50 && hasFabric == true && usedRock == true){
       sceneImage = doorFabricHover;
+      sceneText = "Let's tie this here.";
+      console.log("sceneImage is set to " + sceneImage + "\n And sceneText is set to " + sceneText);
+      e1route = true;
     }
 
-    else if (usedRock == true){
+    if (usedRock == true){
       sceneImage = exitArrow;
     }
     
@@ -241,15 +243,14 @@ draw = function(){
     else if (usedShear == true){
       sceneImage = Cempty;
     }
-    else if (usedKey == true && hasKey == false){
-      sceneImage = COpen;
-    }
-    else if (dist(mouseX, mouseY, 330, 210)< 20){
-      sceneText = "A key is needed.";
-    }
-    else if (dist(mouseX, mouseY, 400, 165)< 40 && usedKey == true){
+
+    else if (dist(mouseX, mouseY, 400, 165)< 100 && usedKey == true){
       sceneText = "Looks sharp, I could use this to cut some material for some makeshift rope.";
       sceneImage = CShearHover;
+    }
+
+    else if (dist(mouseX, mouseY, 330, 210)< 80){
+      sceneText = "A key is needed.";
     }
     else {
       sceneImage = ChestImage;
