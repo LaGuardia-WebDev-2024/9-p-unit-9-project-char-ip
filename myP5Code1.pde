@@ -198,7 +198,7 @@ draw = function(){
       e1route = true;
     }
 
-    if (usedRock == true){
+    else if (usedRock == true){
       sceneImage = exitArrow;
     }
     
@@ -325,9 +325,6 @@ draw = function(){
       sceneImage = WFabric;
     }
 
-    if (e1route == true && inDoorView) {
-      sceneImage = doorFabricHover;
-    }
   }
 
   
@@ -363,6 +360,19 @@ draw = function(){
       sceneText = "Nice! Now, got to find something to descend this tower.";
       hasRock = false;
       usedRock = true;
+    }
+
+    else if(sceneImage == doorFabricHover){
+      clearViews();
+      hasFabric = false;
+      usedFabric = true;
+      sceneImage = exit;
+      sceneText = "Freedom at last."
+    }
+
+    else if (sceneImage == exit){
+      clearViews();
+      ending1 = true;
     }
 
     // Right window -------------------------------------------
@@ -424,12 +434,6 @@ draw = function(){
 
 var drawScene = function(){
   image(sceneImage, 0, 0, 800, 450);
-  
-  if (ending1 == false){
-    
-  }
-
-
 
   // Show Items -----------------------------------------------------------
   if (hasKey == true){
