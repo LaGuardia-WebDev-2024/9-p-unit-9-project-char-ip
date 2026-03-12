@@ -9,10 +9,6 @@ setup = function() {
 
 var numDays = random()*100
 
-var ending1 = false
-var e1t
-var ending2 = false
-var e12
 
 var e1Image = loadImage("images/ending1.png");
 var e2Image = loadImage("images/ending2.png");
@@ -101,7 +97,6 @@ draw = function(){
     
   drawScene();
   text ("# of Days:" + floor(numDays), 665, 430);
-  text ( e1t + " True Ending |" + e2t + " Quick Fix Ending", 10, 430);
 
   if(dist(mouseX, mouseY, 400, 410)< 20 ){
     clearViews();
@@ -371,7 +366,6 @@ draw = function(){
 
     else if (sceneImage == exit){
       clearViews();
-      ending1 = true;
       sceneImage = e1Image;
       sceneText = " ";
     }
@@ -468,18 +462,6 @@ var drawScene = function(){
   textSize(20);
   text(sceneText, 10, 30);
 
-  if (ending1 == false){
-    e1t = "【 】";
-  }
-  if (ending1 == true){
-    e1t = "【✓】";
-  }
-  if (ending2 == false){
-    e2t = "【 】";
-  }
-  if (ending2 == true){
-    e2t = "【✓】";
-  }
 };
 
 function clearViews(){
