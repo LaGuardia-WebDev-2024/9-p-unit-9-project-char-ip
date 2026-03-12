@@ -11,10 +11,11 @@ var numDays = random()*100
 
 var ending1 = false
 var e1t
-var e1route = false
 var ending2 = false
 var e12
-var e2route = false
+
+var e1Image = loadImage("images/ending1.png");
+var e2Image = loadImage("images/ending2.png");
 
 //main ------------------------------------------------
 var mainSceneImage = loadImage("images/main/main.png"); 
@@ -108,7 +109,6 @@ draw = function(){
     console.log ("GOING BACK!");
   }
   
-
   //MAIN
 
   // Background ------------------------------------------------------
@@ -191,11 +191,10 @@ draw = function(){
       sceneText = "One good hit andd...!";
     }
 
-    else if (dist(mouseX, mouseY, 400, 30)< 50 && hasFabric == true && usedRock == true){
+    else if (dist(mouseX, mouseY, 400, 30)< 150 && hasFabric == true && usedRock == true){
       sceneImage = doorFabricHover;
       sceneText = "Let's tie this here.";
       console.log("sceneImage is set to " + sceneImage + "\n And sceneText is set to " + sceneText);
-      e1route = true;
     }
 
     else if (usedRock == true){
@@ -373,6 +372,8 @@ draw = function(){
     else if (sceneImage == exit){
       clearViews();
       ending1 = true;
+      sceneImage = e1Image;
+      sceneText = " ";
     }
 
     // Right window -------------------------------------------
